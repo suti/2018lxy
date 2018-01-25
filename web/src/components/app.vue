@@ -4,6 +4,7 @@
   </div>
 </template>
 <script>
+
   export default {
     name: 'app',
     data () {
@@ -11,6 +12,16 @@
         app:'hello world'
       }
     },
+    methods:{
+      async test (){
+        let {data:{body}} = await this.axios.get('/')
+        this.app = 'ok'
+      }
+    },
+    async mounted(){
+      await this.test()
+      console.log('ok')
+    }
   }
 </script>
 <style lang="less" scoped>

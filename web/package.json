@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cross-env webpack-dev-server --open --hot --inline --host --port 8080 --config ./build/webpack.dev.config.js"
+    "dev": "cross-env webpack-dev-server --progress --config ./build/webpack.dev.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

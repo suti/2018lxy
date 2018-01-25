@@ -1,7 +1,10 @@
 import app from './components/app'
-import vue from 'vue'
+import Vue from 'vue'
+import axios from 'axios'
 
-const main = new vue({
+Vue.prototype.axios = axios
+
+const main = new Vue({
   el: '#app',
   render: h => h(app),
 })
