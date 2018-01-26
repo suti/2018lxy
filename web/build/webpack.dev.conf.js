@@ -1,10 +1,17 @@
-const config = require('./webpack.config')
-const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const path = require('path')
+const merge = require('webpack-merge')
 const webpack = require('webpack')
+const base = require('./webpack.base.conf')
+const path = require('path')
+
+const resolve = dir => path.join(__dirname, '..', dir)
 
 const dev = {
+  output: {
+    path: resolve('dist'),
+    publicPath: '/dist/',
+    filename: 'build.js',
+  },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
@@ -24,4 +31,4 @@ const dev = {
   devtool: '#eval-source-map',
 }
 
-module.exports = merge(config, dev)
+module.exports = merge(base, dev)

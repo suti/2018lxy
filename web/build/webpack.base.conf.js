@@ -1,6 +1,12 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
+
+const resolve = dir => path.join(__dirname, '..', dir)
 
 const conf = {
+  entry: {
+    main: resolve('./src/main.js'),
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
   },

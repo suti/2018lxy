@@ -1,4 +1,15 @@
 {
-  "presets": [],
-  "plugins": []
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-regenerator",
+    "transform-runtime"
+  ]
 }

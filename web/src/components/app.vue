@@ -14,13 +14,13 @@
     },
     methods:{
       async test (){
+        let time = Date.now()
         let {data:{body}} = await this.axios.get('/')
-        this.app = 'ok'
+        this.app = 'ok' + (Date.now() - time)
       }
     },
     async mounted(){
       await this.test()
-      console.log('ok')
     }
   }
 </script>
