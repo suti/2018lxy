@@ -1,0 +1,17 @@
+{
+  "name": "server-node",
+  "version": "1.0.0",
+  "description": "server by nodeJs",
+  "repository": "https://github.com/suti/2018lxy/server-node",
+  "author": "lixiangyu",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "koa": "^2.4.1",
+    "mongoose": "^5.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0"
+  }
+}
