@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cross-env webpack-dev-server --progress --config ./build/webpack.dev.conf.js",
-    "build": "cross-env webpack --progress --config ./build/webpack.build.conf.js"
+    "dev": "cross-env webpack-dev-server --progress --config ./config/webpack.dev.conf.js",
+    "build": "cross-env webpack --progress --config ./config/webpack.build.conf.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
