@@ -7,7 +7,9 @@
   export default {
     name: 'canva',
     data () {
+      return {
 
+      }
     },
   }
 </script>

@@ -1,6 +1,22 @@
 <template>
   <div class="colorpicker">
-    <div class="colorpicker-inner" :style="{background:color}"></div>
+    <div class="colorpicker-1" v-if="!state">
+      <div
+        class="colorpicker-inner"
+        @click="change"
+      >
+        <div
+          class="colorpicker-colors"
+          v-for="color in colors"
+          :style="{background:color}"
+        ></div>
+      </div>
+      <div class="colorpicker-angle"></div>
+      <div class="colorpicker-exit"></div>
+    </div>
+    <div class="colorpicker-2" v-else>
+
+    </div>
   </div>
 </template>
 <script>
@@ -8,29 +24,17 @@
     name: 'colorpicker',
     data () {
       return {
-        color: '#00ffcc',
+        state: 0,
+        colors: ['#ff00cc', '#ffcc00', '#00ccff', '#00ffcc'],
       }
+    },
+    methods: {
+      change () {
+        this.state = 1
+      },
     },
   }
 </script>
 <style lang="less" scoped>
-
-  .colorpicker {
-    width: 200px;
-    height: 200px;
-
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .16);
-    position: absolute;
-
-    .colorpicker-inner {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .16);
-    }
-  }
+  @import "./colorpicker";
 </style>

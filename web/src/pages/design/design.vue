@@ -26,7 +26,7 @@
       await this.test()
     },
     components:{
-      canva,colorPicker
+      canva,colorPicker,
     }
   }
 </script>
