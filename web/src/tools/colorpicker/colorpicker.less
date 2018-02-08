@@ -1,9 +1,14 @@
 @color: #f9f9f9;
 
-.colorpicker {
+.colorPicker {
   position: absolute;
+  width: 120px;
+  height: 120px;
 
-  .colorpicker-1 {
+  .colorPicker-1 {
+    position: absolute;
+    top: 12px;
+    left: 12px;
     width: 86px;
     height: 86px;
 
@@ -38,7 +43,7 @@
       z-index: 0;
     }
 
-    .colorpicker-inner {
+    .colorPicker-inner {
       width: 68px;
       height: 68px;
       border-radius: 50%;
@@ -49,14 +54,14 @@
       z-index: 3;
       overflow: hidden;
 
-      .colorpicker-colors {
+      .colorPicker-colors {
         width: 34px;
         height: 34px;
         float: left;
       }
     }
 
-    .colorpicker-angle {
+    .colorPicker-angle {
       position: absolute;
       width: 43px;
       height: 43px;
@@ -79,7 +84,7 @@
       }
     }
 
-    .colorpicker-exit {
+    .colorPicker-exit {
       position: absolute;
       width: 12px;
       height: 12px;
@@ -96,11 +101,106 @@
     }
   }
 
-  .colorpicker-2 {
-    width: 100px;
-    height: 100px;
+  .colorPicker-2 {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .16);
+    position: absolute;
+    background: @color;
+
+    .colorPicker-inner {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      top: 1px;
+      left: 1px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      .colorPicker-colors {
+        width: 59px;
+        height: 59px;
+        float: left;
+      }
+
+      .selector {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px #ffffff solid;
+        box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, .88);
+        z-index: 0;
+      }
+
+      .colorPicker-hueWheel {
+        position: absolute;
+        width: 108px;
+        height: 108px;
+        top: 5px;
+        left: 5px;
+        border-radius: 50%;
+        background-image: url("./hueWheel.png");
+        background-size: 108px auto;
+        background-repeat: no-repeat;
+        box-shadow: 0 0 1px 4px rgba(0, 0, 0, .16);
+
+        &:before{
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: transparent;
+          z-index: 3;
+        }
+      }
+
+      .colorPicker-hsl-shadow {
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        top: 23px;
+        left: 23px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .16);
+
+        .colorPicker-hsl {
+          position: absolute;
+          width: 46px;
+          height: 46px;
+          top: 13px;
+          left: 13px;
+          transform: rotate(-45deg);
+          box-shadow: 0 0 1px 1px rgba(0, 0, 0, .16);
+          z-index: 4;
+
+          &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-image: url("./hslShadow.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+          }
+          &:before{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent;
+            z-index: 3;
+          }
+        }
+      }
+    }
   }
 
 }

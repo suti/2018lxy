@@ -2,11 +2,13 @@
   <div id="design">
     <canva></canva>
     <colorPicker></colorPicker>
+    <!--<hue></hue>-->
   </div>
 </template>
 <script>
   import canva from '../../components/canva/canva'
-  import colorPicker from '../../tools/colorpicker/colorpicker'
+  import hue from '../../tools/createColors/hueWheel'
+  import colorPicker from '../../tools/colorPicker/colorPicker'
 
   export default {
     name: 'design',
@@ -26,7 +28,7 @@
       await this.test()
     },
     components:{
-      canva,colorPicker,
+      canva,colorPicker,hue
     }
   }
 </script>

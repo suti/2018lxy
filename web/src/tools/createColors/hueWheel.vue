@@ -29,13 +29,13 @@
     },
     props: {
       width: {
-        default: 200,
+        default: 2000,
       },
       height: {
-        default: 200,
+        default: 2000,
       },
       wheelWidth: {
-        default: 40,
+        default: 320,
       },
     },
     methods: {
@@ -57,9 +57,8 @@
               continue
 
             let Hue = Math.atan2(s2, s1) * 180 / Math.PI
-            if (s2 < 0) {
+            if (s2 < 0)
               Hue += 360
-            }
             let {r, g, b} = colors.HSL2RGB({h: Hue / 360, s: 1, l: 0.5})
             ctx.fillStyle = `rgb(${r},${g},${b})`
             ctx.fillRect(l, t, 1, 1)
