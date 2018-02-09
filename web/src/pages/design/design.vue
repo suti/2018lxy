@@ -1,7 +1,7 @@
 <template>
   <div id="design">
     <canva></canva>
-    <colorPicker></colorPicker>
+    <!--<colorPicker></colorPicker>-->
     <!--<hue></hue>-->
   </div>
 </template>

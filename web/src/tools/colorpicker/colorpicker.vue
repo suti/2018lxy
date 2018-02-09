@@ -3,11 +3,11 @@
     <div class="colorPicker-1" v-if="!state">
       <div
         class="colorPicker-inner"
-        @click="change"
+        @mousedown="pickerDown"
       >
         <div
           class="colorPicker-colors"
-          v-for="color in colors"
+          v-for="color in colorList"
           :style="{background:color}"
         ></div>
       </div>
@@ -18,7 +18,7 @@
       <div class="colorPicker-inner">
         <div
           class="colorPicker-colors"
-          v-for="color in colors"
+          v-for="color in colorList"
           :style="{background:color}"
         ></div>
         <div
@@ -49,16 +49,51 @@
     name: 'colorPicker',
     data () {
       return {
-        state: 1,
-        colors: ['#00ccff', '#00ccff', '#00ccff', '#00ccff'],
-        curHue: 0,
-        curHslDeg: 0,
-        curHslRadii: 0,
+        state: 0,
+        colorList: ['#00ccff', '#00ccff', '#00ccff', '#00ccff'],
+        curHue: 192,
+        curHsl: {h: 192, s: 1, l: .5},
+
+        // hslsp: {},
       }
     },
     methods: {
-      change () {
-        this.state = ~~!this.state
+      pickerDown () {
+        let now = Date.now()
+        let moveFlag = false
+        let startPoint = null
+
+        const mousemove = e => {
+          if (startPoint === null) {
+            startPoint = {x: e.clientX, y: e.clientY}
+            return
+          }
+          let mo = {x: e.clientX, y: e.clientY}
+          if ((startPoint.x - mo.x) ** 2 > 25 || (startPoint.y - mo.xy) ** 2 > 25) {
+            moveFlag = true
+            let cp = {
+              x: this.$refs.colorPicker.offsetLeft + 60,
+              y: this.$refs.colorPicker.offsetTop + 60,
+            }
+
+            let hue = Math.atan2(cp.y - mo.y, mo.x - cp.x) * 180 / Math.PI
+            if (cp.y < mo.y)
+              hue += 360
+          }
+
+          // this.curHue = hue
+        }
+        const mouseup = () => {
+          document.removeEventListener('mousemove', mousemove)
+          document.removeEventListener('mouseup', mouseup)
+          if (Date.now() - now < 400 && !moveFlag) {
+            this.state = ~~!this.state
+          } else if (moveFlag) {
+            this.colorList = [this.curHex, this.curHex, this.curHex, this.curHex]
+          }
+        }
+        document.addEventListener('mousemove', mousemove)
+        document.addEventListener('mouseup', mouseup)
       },
       hueWheelDown () {
         const mousemove = e => {
@@ -71,10 +106,12 @@
           if (cp.y < mo.y)
             hue += 360
           this.curHue = hue
+          this.curHsl.h = hue / 360
         }
         const mouseup = () => {
           document.removeEventListener('mousemove', mousemove)
           document.removeEventListener('mouseup', mouseup)
+          this.colorList = [this.curHex, this.curHex, this.curHex, this.curHex]
         }
         document.addEventListener('mousemove', mousemove)
         document.addEventListener('mouseup', mouseup)
@@ -86,15 +123,42 @@
             y: this.$refs.colorPicker.offsetTop + 60,
           }
           let mo = {x: e.clientX, y: e.clientY}
-          this.curHslDeg = Math.atan2(cp.y - mo.y, mo.x - cp.x) * 180 / Math.PI
-          this.curHslRadii = ((cp.y - mo.y) ** 2 + (mo.x - cp.x) ** 2) ** (1 / 2)
+          let deg = Math.atan2(cp.y - mo.y, mo.x - cp.x) * 180 / Math.PI - 45
+          let ll = ((cp.y - mo.y) ** 2 + (mo.x - cp.x) ** 2) ** (1 / 2)
+          let x = ll * Math.cos(deg * Math.PI / 180) + 17
+          let y = 17 - ll * Math.sin(deg * Math.PI / 180)
+          // positionLimit
+          if (x < -6) x = -6
+          if (x > 40) x = 40
+          if (y < -6) y = -6
+          if (y > 40) y = 40
+
+          let h, s, l
+          h = this.curHue / 360
+          x += 6
+          y += 6
+          s = y / (46 - x + y)
+          l = (46 - y + x) / 92
+          this.curHsl = {h, s, l}
         }
         const mouseup = () => {
           document.removeEventListener('mousemove', mousemove)
           document.removeEventListener('mouseup', mouseup)
+          this.colorList = [this.curHex, this.curHex, this.curHex, this.curHex]
         }
         document.addEventListener('mousemove', mousemove)
         document.addEventListener('mouseup', mouseup)
+      },
+    },
+    watch: {
+      curHex () {
+        this.$set(this.colorList, 1, this.curHex)
+        this.$set(this.colorList, 3, this.curHex)
+      },
+      state () {
+        if (this.state) {
+
+        }
       },
     },
     computed: {
@@ -114,18 +178,17 @@
         }
       },
       hslsp () {
-        let deg = this.curHslDeg - 45
-        let ll = this.curHslRadii
-        let x = ll * Math.cos(deg * Math.PI / 180) + 17
-        let y = 17 - ll * Math.sin(deg * Math.PI / 180)
-        if (x < -6) x = -6
-        if (x > 40) x = 40
-        if (y < -6) y = -6
-        if (y > 40) y = 40
+        let x, y
+        let {s, l} = this.curHsl
+        x = 92 * (1 - l) * s + 92 * l - 46
+        y = 46 + x - 92 * l
         return {
-          top: y + 'px',
-          left: x + 'px',
+          top: y - 6 + 'px',
+          left: x - 6 + 'px',
         }
+      },
+      curHex () {
+        return '#' + colors.HSL2Hex(this.curHsl)
       },
 
     },
