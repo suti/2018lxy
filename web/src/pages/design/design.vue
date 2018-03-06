@@ -1,7 +1,7 @@
 <template>
   <div id="design">
     <canva></canva>
-    <!--<colorPicker></colorPicker>-->
+    <colorPicker></colorPicker>
     <!--<hue></hue>-->
   </div>
 </template>
@@ -33,16 +33,5 @@
   }
 </script>
 <style lang="less" scoped>
-  #design{
-    /*width: 500px;*/
-    /*height: 600px;*/
-    font-size: 26px;
-    /*line-height: 600px;*/
-    margin: 0 auto;
-    color: #00ffcc;
-
-    &:hover{
-      color: #00ccff;
-    }
-  }
+  @import "./design.less";
 </style>

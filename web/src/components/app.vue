@@ -15,6 +15,9 @@
 
   }
 </script>
+<style lang="less">
+  @import "../base/reset.css";
+</style>
 <style lang="less" scoped>
   #app{
     width: 100%;
