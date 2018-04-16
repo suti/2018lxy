@@ -1,0 +1,74 @@
+{
+  "name": "desktop_version",
+  "version": "1.0.1712082",
+  "description": "创客贴桌面版(beta)",
+  "main": "index.js",
+  "author": "北京艺源酷科技有限公司(suti_ckt)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build&&electron ./index.js",
+    "build": "webpack --progress --hide-modules --config ./build/webpack.config.js",
+    "release": "npm run build&&electron-builder --mac&&electron-builder --w --x64",
+    "rem": "npm run build&&electron-builder --mac",
+    "rew": "npm run build&&electron-builder --w --x64"
+  },
+  "build": {
+    "productName": "创客贴beta",
+    "appId": "com.chuangkit.app",
+    "directories": {
+      "output": "dist/build"
+    },
+    "files": [
+      "index.js",
+      "!**/dist/*",
+      "!**/build/*",
+      "!**/src/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme,test,__tests__,tests,powered-test,example,examples,*.d.ts}",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,__pycache__,thumbs.db,.gitignore,.gitattributes,.flowconfig,.yarn-metadata.json,.idea,.vs,appveyor.yml,.travis.yml,circle.yml,npm-debug.log,.nyc_output,yarn.lock,.yarn-integrity}"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 200,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "./icon/cktMac.icns",
+      "target": "dmg",
+      "bundleVersion": "1.0.1712082"
+    },
+    "win": {
+      "icon": "./icon/ckt.ico"
+    },
+    "linux": {
+      "icon": "./icon/cktMac.icns"
+    }
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "electron": "^1.8.4",
+    "electron-builder": "^20.8.2",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "deepcopy": "^0.6.3"
+  }
+}
