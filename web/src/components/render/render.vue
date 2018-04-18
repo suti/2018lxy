@@ -1,8 +1,8 @@
 <template>
   <svg
     :viewBox="viewBox"
-    :width="canvaWidth"
-    :height="canvaHeight"
+    :width="canvasWidth"
+    :height="canvasHeight"
     id="render"
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'
@@ -12,14 +12,15 @@
       v-for="(element, index) in elementsData"
       :key="index"
       :data-index="index"
+      :transform="computeTransform(element.data.transform)"
     >
       <svg-render
         v-if="element.type === 'svg'"
-        :data="element"
+        :element="element"
       ></svg-render>
       <image-render
-        v-else-if="element.type === 'img'"
-        :data="element"
+        v-if="element.type === 'image'"
+        :element="element"
       ></image-render>
     </g>
   </svg>
@@ -34,22 +35,27 @@
     data () {
       return {}
     },
+    methods: {
+      computeTransform (transform) {
+        let {translate, rotate} = transform
+        return `translate(${translate.join(',')}),rotate(${rotate.join(',')})`
+      },
+    },
     computed: {
       ...mapGetters({
-        canvaData: 'getCanvaData',
+        canvasData: 'getCanvasData',
       }),
       elementsData () {
-        let data = this.canvaData ? this.canvaData.elements || [] : []
-        return JSON.parse(JSON.stringify(data))
+        return this.canvasData.elements
       },
-      canvaHeight () {
-        return this.canvaData ? this.canvaData.height || 0 : 0
+      canvasHeight () {
+        return this.canvasData ? this.canvasData.height || 0 : 0
       },
-      canvaWidth () {
-        return this.canvaData ? this.canvaData.width || 0 : 0
+      canvasWidth () {
+        return this.canvasData ? this.canvasData.width || 0 : 0
       },
       viewBox () {
-        return `0 0 ${this.canvaWidth} ${this.canvaHeight}`
+        return `0 0 ${this.canvasWidth} ${this.canvasHeight}`
       },
     },
     components: {

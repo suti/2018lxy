@@ -1,22 +1,23 @@
 <template>
   <div id="design" ref="dom">
-    <canva></canva>
+    <canvas-comp></canvas-comp>
     <colorPicker></colorPicker>
-    <!--<hue></hue>-->
   </div>
 </template>
 <script>
-  import canva from '../../components/canva/canva'
+  import canvasComp from '../../components/canvas/canvas'
   import hue from '../../tools/createColors/hueWheel'
   import colorPicker from '../../tools/colorPicker/colorPicker'
   import Dropdrag from '../../lib/Dropdrag'
   import _FileReader from '../../utils/_FileReader'
+  import element from '../../control/element'
 
   export default {
     name: 'design',
     data () {
       return {
         app: 'hello world',
+        svgStr: '',
       }
     },
     methods: {
@@ -28,7 +29,7 @@
     },
     mounted () {
       let drag = new Dropdrag(this.$refs.dom)
-
+      let _this = this
       drag.setFunc({
         dragover (e) {
           e.dataTransfer.dropEffect = 'copy'
@@ -36,14 +37,35 @@
         async drop (e) {
           let files = e.dataTransfer.files
           let fr = new _FileReader
-          await fr.blob(files[0])
-          let md5 = await fr.MD5()
-          console.log(md5)
+          let blob = await fr.blob(files[0])
+          let tempData = null, type = ''
+          if (fr.type.indexOf('svg') > -1) {
+            type = 'svg'
+            tempData = await fr.readAsText(blob)
+          } else if (fr.type.indexOf('image') > -1) {
+            type = 'image'
+            tempData = await fr.base64()
+          }
+          if (tempData) {
+            let md5 = await fr.MD5()
+            element.addElement({
+              type,
+              data: {
+                transform: {
+                  translate: [40, 40],
+                  rotate: [0, 0, 0],
+                },
+                viewBox: [],
+              },
+              hash: md5,
+              temp: tempData,
+            })
+          }
         },
       }).start(['dragenter', 'dragleave', 'dragover', 'drop'])
     },
     components: {
-      canva, colorPicker, hue,
+      canvasComp, colorPicker, hue,
     },
   }
 </script>

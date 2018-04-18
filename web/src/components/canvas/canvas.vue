@@ -1,5 +1,5 @@
 <template>
-  <div class="canva">
+  <div class="canvas" :style="style">
     <div class="render">
       <render></render>
     </div>
@@ -11,11 +11,23 @@
 <script>
   import render from '../render/render'
   import operator from '../operator/operator'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    name: 'canva',
+    name: 'canvas',
     data () {
       return {}
+    },
+    computed: {
+      ...mapGetters({
+        canvasData: 'getCanvasData',
+      }),
+      style () {
+        return {
+          height: this.canvasData.height + 'px',
+          width: this.canvasData.width + 'px',
+        }
+      },
     },
     components: {
       render,
@@ -24,7 +36,7 @@
   }
 </script>
 <style lang="less" scoped>
-  .canva {
+  .canvas {
     background: #ffffff;
     display: block;
     position: absolute;

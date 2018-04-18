@@ -9,11 +9,19 @@ class _FileReader {
     this.sha256 = null
     this.sha512 = null
     this.aes = null
+    this.type = ''
   }
 
   async blob (blob) {
-    blob && blob instanceof Blob && (this._blob = blob)
-    blob && (this._base64 = await this.readAsDataURL(blob))
+
+    blob &&
+    blob instanceof File &&
+    (this._base64 = await this.readAsDataURL(blob))
+    ||
+    blob &&
+    blob instanceof Blob &&
+    (this._blob = blob)
+
     let _blob = this._blob
     return new Promise((resolve, reject) => {
       if (_blob && blob instanceof Blob)
@@ -21,6 +29,7 @@ class _FileReader {
       if (this._base64 == null)
         return reject(new Error('base64 is null'))
       let mimeString = this._base64.split(',')[0].split(':')[1].split(';')[0]
+      this.type = mimeString
       let dataBin = atob(this._base64.split(',')[1])
       let buffer = new Uint8Array(dataBin.length)
       for (let i = 0; i < dataBin.length; i++) {
@@ -32,8 +41,18 @@ class _FileReader {
     })
   }
 
-  base64 (base64) {
-    base64 && (this._base64 = base64)
+  async base64 (base64) {
+    base64 &&
+    typeof base64 === 'string' &&
+    (this._base64 = base64)
+
+    base64 &&
+    base64 instanceof File &&
+    (this._base64 = await this.readAsDataURL(base64))
+
+    this._base64 &&
+    (this.type = this._base64.split(',')[0].split(':')[1].split(';')[0])
+
     return this._base64
   }
 
@@ -65,10 +84,18 @@ class _FileReader {
     })
   }
 
-  readAsDataURL (file) {
+  readAsDataURL (_blob) {
     return new Promise(resolve => {
       let reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(_blob)
+      reader.onload = () => resolve(reader.result)
+    })
+  }
+
+  readAsText (_blob, encoding = 'utf-8') {
+    return new Promise(resolve => {
+      let reader = new FileReader()
+      reader.readAsText(_blob, encoding)
       reader.onload = () => resolve(reader.result)
     })
   }

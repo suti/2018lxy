@@ -4,6 +4,7 @@ import axios from 'axios'
 import routes from './routes/routes'
 import VueRouter from 'vue-router'
 import store from './store/index'
+import common from './control/common'
 
 Vue.prototype.axios = axios
 Vue.use(VueRouter)
@@ -18,5 +19,6 @@ const app = new Vue({
   el: '#app',
   render: h => h(App),
   router,
-  store
+  store,
 })
+common.initVue(app)
