@@ -6,12 +6,14 @@
   "author": "lixiangyu",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "koa": "^2.4.1",
-    "mongoose": "^5.0.1"
-  },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0"
+  },
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "koa-send": "^4.1.3",
+    "mongoose": "^5.0.15"
   }
 }
