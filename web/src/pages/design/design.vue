@@ -1,7 +1,8 @@
 <template>
   <div id="design" ref="dom">
-    <canvas-comp></canvas-comp>
-    <colorPicker></colorPicker>
+    <!--<canvas-comp></canvas-comp>-->
+    <!--<colorPicker></colorPicker>-->
+    <hue :wheelWidth="0"></hue>
   </div>
 </template>
 <script>

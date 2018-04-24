@@ -29,10 +29,10 @@
     },
     props: {
       width: {
-        default: 2000,
+        default: 800,
       },
       height: {
-        default: 2000,
+        default: 800,
       },
       wheelWidth: {
         default: 320,
@@ -53,17 +53,18 @@
             let s2 = h / 2 - t
             let s3 = (s1 ** 2 + s2 ** 2) ** (1 / 2)
 
-            if (s3 > w / 2 || s3 < (w / 2 - ww))
+            if (s3 > w / 2)
               continue
 
             let Hue = Math.atan2(s2, s1) * 180 / Math.PI
             if (s2 < 0)
               Hue += 360
-            let {r, g, b} = colors.HSL2RGB({h: Hue / 360, s: 1, l: 0.5})
+            let {r, g, b} = colors.HSB2RGB({h: Hue, s: s3 * 200 / w, b: 100})
             ctx.fillStyle = `rgb(${r},${g},${b})`
             ctx.fillRect(l, t, 1, 1)
           }
         }
+        console.log('ok')
       },
     },
   }
