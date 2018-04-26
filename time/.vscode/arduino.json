@@ -1,0 +1,6 @@
+{
+    "port": "/dev/cu.SLAB_USBtoUART",
+    "board": "esp8266:esp8266:nodemcuv2",
+    "configuration": "CpuFrequency=80,UploadTool=esptool,UploadSpeed=115200,FlashSize=4M3M",
+    "sketch": "time.ino"
+}
