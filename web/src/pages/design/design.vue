@@ -1,8 +1,8 @@
 <template>
   <div id="design" ref="dom">
-    <!--<canvas-comp></canvas-comp>-->
+    <canvas-comp></canvas-comp>
     <!--<colorPicker></colorPicker>-->
-    <hue :wheelWidth="0"></hue>
+    <!--<hue :wheelWidth="0"></hue>-->
   </div>
 </template>
 <script>
@@ -49,6 +49,9 @@
           }
           if (tempData) {
             let md5 = await fr.MD5()
+            let data = new FormData
+            data.append('file', files[0])
+            data.append('md5', md5)
             element.addElement({
               type,
               data: {
@@ -61,6 +64,8 @@
               hash: md5,
               temp: tempData,
             })
+            let cb = await _this.axios.post('/api/file/upload', data)
+            console.log(cb.body)
           }
         },
       }).start(['dragenter', 'dragleave', 'dragover', 'drop'])

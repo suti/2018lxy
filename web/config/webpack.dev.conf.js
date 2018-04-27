@@ -19,7 +19,13 @@ const dev = {
     host: '0.0.0.0',
     hot: true,
     inline: true,
-    open: false
+    open: false,
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:2333',
+        secure: false,
+      }
+    },
   },
   performance: {
     hints: false,
