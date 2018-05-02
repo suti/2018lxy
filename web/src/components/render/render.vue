@@ -13,6 +13,8 @@
       :key="index"
       :data-index="index"
       :transform="computeTransform(element.data.transform)"
+      @click="elementClick($event, index)"
+      @mousedown="elementDown($event, index)"
     >
       <svg-render
         v-if="element.type === 'svg'"
@@ -36,9 +38,18 @@
       return {}
     },
     methods: {
+      ...mapActions([
+        'setFocusElemIndex',
+      ]),
       computeTransform (transform) {
         let {translate, rotate} = transform
         return `translate(${translate.join(',')}),rotate(${rotate.join(',')})`
+      },
+      elementClick (ev, elemIndex) {
+        this.setFocusElemIndex(elemIndex)
+      },
+      elementDown (ev, elemIndex) {
+
       },
     },
     computed: {

@@ -1,6 +1,7 @@
 <template>
   <div id="design" ref="dom">
     <canvas-comp></canvas-comp>
+
     <!--<colorPicker></colorPicker>-->
     <!--<hue :wheelWidth="0"></hue>-->
   </div>
@@ -61,6 +62,7 @@
                   rotate: [0, 0, 0],
                 },
                 viewBox: [],
+
               },
               hash: md5,
               temp: tempData,

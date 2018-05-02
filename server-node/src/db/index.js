@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import fileModel from './file/model'
+import dataModel from './data/model'
 
 const dbPath = 'mongodb://localhost:27017/db'
 
@@ -20,5 +21,6 @@ mongoose.connect(dbPath).catch(err => {
 let dbSchemas = {}
 
 dbSchemas['file'] = mongoose.model('file', fileModel)
+dbSchemas['data'] = mongoose.model('data', dataModel)
 
 export default dbSchemas

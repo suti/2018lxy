@@ -36,3 +36,7 @@ export default {
   mutations,
   actions,
 }
+
+export function getCanvasData () {
+  return state
+}
