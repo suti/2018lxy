@@ -7,6 +7,10 @@ let router = new Router()
 
 // router.get('/api/test', test)
 router.post('/api/test', body(), test)
-router.post('/api/file/upload',body({multipart: true}), upload)
+router.post(
+  '/api/file/upload',
+  body({multipart: true, formidable: {maxFileSize: 200 * 1024 * 1024}}),
+  upload,
+)
 
 export default router

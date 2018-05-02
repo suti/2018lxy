@@ -1,13 +1,19 @@
-// import multer from 'koa-multer'
-//
-// let upload = multer({ dest: 'uploads/' })
 import fs from 'fs'
+import path from 'path'
 
-export default function (ctx) {
-  ctx.body = JSON.stringify(ctx.request.body)
+export default async function (ctx) {
   let data = ctx.request.body
-  // let fr = new FileReader()
+  console.log(data.files.file)
+  try {
+    fileSync(data.files.file.path, data.fields.md5)
+    ctx.body = JSON.stringify({code: 1})
+    console.log('上传成功', data.files.file.name, data.fields.md5)
+  } catch (err) {
+    ctx.body = JSON.stringify({code: 0, msg: err})
+    console.log('上传失败', err)
+  }
+}
 
-  console.log(data.fields)
-  console.log(data.files)
+function fileSync (p, md5) {
+  return fs.copyFileSync(p, path.join(__dirname, '../../../', 'store/', md5))
 }
