@@ -1,1 +1,5 @@
+.idea
+server-node/db
+server-node/store
+server-node/lib
 node_modules
