@@ -52,6 +52,7 @@
             let data = new FormData
             data.append('file', files[0])
             data.append('md5', md5)
+            data.append('type', fr.type)
             element.addElement({
               type,
               data: {
