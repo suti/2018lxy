@@ -13,6 +13,7 @@
   import Dropdrag from '../../lib/Dropdrag'
   import _FileReader from '../../utils/_FileReader'
   import element from '../../control/element'
+  import { computeImageWidthHeight } from '../../control/common'
 
   export default {
     name: 'design',
@@ -54,15 +55,17 @@
             data.append('file', files[0])
             data.append('md5', md5)
             data.append('type', fr.type)
+            let {width, height} = await computeImageWidthHeight(await fr.base64())
             element.addElement({
               type,
               data: {
                 transform: {
                   translate: [40, 40],
-                  rotate: [0, 0, 0],
+                  rotate: [0, width / 2, width / 2],
                 },
                 viewBox: [],
-
+                width,
+                height,
               },
               hash: md5,
               temp: tempData,

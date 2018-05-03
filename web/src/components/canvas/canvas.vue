@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas" :style="style">
+  <div class="canvas" :style="style" @keydown.delete="">
     <div class="render">
       <render></render>
     </div>
@@ -28,6 +28,11 @@
           width: this.canvasData.width + 'px',
         }
       },
+    },
+    methods:{
+      ...mapActions([
+        "setFocusElemIndex"
+      ])
     },
     components: {
       render,

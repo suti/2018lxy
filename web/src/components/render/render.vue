@@ -7,14 +7,15 @@
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'
     xmlns:xlink='http://www.w3.org/1999/xlink'
+    @click.self.left="setFocusElemIndex(-1)"
   >
     <g
       v-for="(element, index) in elementsData"
       :key="index"
       :data-index="index"
       :transform="computeTransform(element.data.transform)"
-      @click="elementClick($event, index)"
-      @mousedown="elementDown($event, index)"
+      @click.left="elementClick($event, index)"
+      @mousedown.left="elementDown($event, index)"
     >
       <svg-render
         v-if="element.type === 'svg'"
@@ -45,11 +46,24 @@
         let {translate, rotate} = transform
         return `translate(${translate.join(',')}),rotate(${rotate.join(',')})`
       },
-      elementClick (ev, elemIndex) {
+      elementClick (event, elemIndex) {
         this.setFocusElemIndex(elemIndex)
       },
-      elementDown (ev, elemIndex) {
+      elementDown (event, elemIndex) {
+        let startPoint = {x: event.clientX, y: event.clientY}
+        let [elX, elY] = this.elementsData[elemIndex].data.transform.translate
 
+        let mousemove = event => {
+          let {x, y} = startPoint
+          let change = {x: event.clientX - x, y: event.clientY - y}
+          this.elementsData[elemIndex].data.transform.translate = [elX + change.x, elY + change.y]
+        }
+        let mouseup = () => {
+          document.removeEventListener('mousemove', mousemove)
+          document.removeEventListener('mouseup', mouseup)
+        }
+        document.addEventListener('mousemove', mousemove)
+        document.addEventListener('mouseup', mouseup)
       },
     },
     computed: {
