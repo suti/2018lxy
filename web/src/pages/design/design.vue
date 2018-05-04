@@ -1,7 +1,7 @@
 <template>
   <div id="design" ref="dom">
     <canvas-comp></canvas-comp>
-
+    <router-link to="/">to /</router-link>
     <!--<colorPicker></colorPicker>-->
     <!--<hue :wheelWidth="0"></hue>-->
   </div>
