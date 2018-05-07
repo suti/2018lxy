@@ -70,8 +70,20 @@ void jsonDatabaseUpload(){
   file.print(server.arg("json"));
   file.close();
   Serial.print("jsonDatabaseUpload:\n");
-  Serial.println(server.arg("json"));
+  Serial.println(server.arg("json")); 
   server.send(200,"text/plain","{'status':'sucess'}");
+}
+void dataSave(){
+  File file;
+  if(server.hasArg("data"))
+    file = SPIFFS.open("/db/user.json","w");
+  else
+    return server.send(200, "text/plain", "{'status':'fail,please post time or user'}"); 
+  file.print(server.arg("data"));
+  file.close();
+  Serial.print("dataSave:\n");
+  Serial.println(server.arg("dataSave")); 
+  server.send(200,"text/plain","{'status':'success'}");
 }
 void handleFileDelete(){
   if(server.args() == 0) return server.send(500, "text/plain", "BAD ARGS");

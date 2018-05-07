@@ -15,9 +15,10 @@ void HttpServerRouter(){
       server.send(404, "text/plain", "FileNotFound");
   });
   server.on("/save", HTTP_POST, jsonDatabaseUpload);
+  server.on("/saveData", HTTP_POST, dataSave);
   server.on("/run", HTTP_GET, [](){
       runFlag(1);
-      StaticJsonBuffer<50> jsonBuffer;
+      StaticJsonBuffer<50> jsonBuffer;  
       JsonObject& JsonRoot = jsonBuffer.createObject();
       JsonRoot["status"] = 1;
       String output;
