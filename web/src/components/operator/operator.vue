@@ -139,6 +139,7 @@
         this.point = point
         let startPoint = {x: event.clientX, y: event.clientY}
         let [elX, elY] = this.elemData.transform.translate
+        let rotate = this.elemData.transform.rotate
         let width = this.elemData.width
         let height = this.elemData.height
         let ratio = Math.atan2(height, width) * 180 / Math.PI
@@ -164,12 +165,13 @@
                 newValue.width = width - cpX
                 newValue.height = height - cpY
                 newValue.transform.translate = [elX, elY + cpY]
-                newValue.transform.rotate = [elX, elY + cpY]
+                newValue.transform.rotate = rotate
 
               } else {
                 newValue.width = width + cpX
                 newValue.height = height + cpY
                 newValue.transform.translate = [elX, elY - cpY]
+                newValue.transform.rotate = rotate
               }
               break
             case 2:
@@ -183,10 +185,12 @@
                 newValue.width = width + cpX
                 newValue.height = height + cpY
                 newValue.transform.translate = [elX - cpX, elY - cpY]
+                newValue.transform.rotate = rotate
               } else {
                 newValue.width = width - cpX
                 newValue.height = height - cpY
                 newValue.transform.translate = [elX + cpX, elY + cpY]
+                newValue.transform.rotate = rotate
               }
               break
             case 4:
@@ -201,10 +205,12 @@
                 newValue.width = width + cpX
                 newValue.height = height + cpY
                 newValue.transform.translate = [elX - cpX, elY]
+                newValue.transform.rotate = rotate
               } else {
                 newValue.width = width - cpX
                 newValue.height = height - cpY
                 newValue.transform.translate = [elX + cpX, elY]
+                newValue.transform.rotate = rotate
               }
               break
             case 6:
