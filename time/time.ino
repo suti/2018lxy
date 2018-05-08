@@ -9,6 +9,9 @@
 #include <ArduinoJson.h>
 
 int flag = 0;
+int lastId = 0;
+int fingerSatus = 0;
+
 int runFlag(int i){
   flag = i;
   return flag;
@@ -28,8 +31,8 @@ void setup(void){
 void loop(void){
   HttpServerStart();
   if(runFlag(flag) == 1){
-    int code = getFingerprintID();
-    if(code ==0 ) flag = 0;
+    fingerSatus = getFingerprintID();
+    // if(fingerSatus ==0 ) lastId = finger.fingerID;
     delay(500);
   }
 }

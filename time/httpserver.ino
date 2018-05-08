@@ -73,6 +73,7 @@ void jsonDatabaseUpload(){
   Serial.println(server.arg("json")); 
   server.send(200,"text/plain","{'status':'sucess'}");
 }
+
 void dataSave(){
   File file;
   if(server.hasArg("data"))
@@ -82,9 +83,11 @@ void dataSave(){
   file.print(server.arg("data"));
   file.close();
   Serial.print("dataSave:\n");
-  Serial.println(server.arg("dataSave")); 
+  Serial.println(server.arg("dataSave"));
   server.send(200,"text/plain","{'status':'success'}");
 }
+
+
 void handleFileDelete(){
   if(server.args() == 0) return server.send(500, "text/plain", "BAD ARGS");
   String path = server.arg(0);

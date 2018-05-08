@@ -3,6 +3,7 @@
 int runFlag(int);
 
 void HttpServerRouter(){
+
   server.on("/list", HTTP_GET, handleFileList);
   server.on("/edit", HTTP_GET, [](){
     if(!handleFileRead("/edit.htm")) server.send(404, "text/plain", "FileNotFound");
@@ -15,7 +16,25 @@ void HttpServerRouter(){
       server.send(404, "text/plain", "FileNotFound");
   });
   server.on("/save", HTTP_POST, jsonDatabaseUpload);
+
+
   server.on("/saveData", HTTP_POST, dataSave);
+  server.on("/lastId", HTTP_GET, [](){
+      StaticJsonBuffer<50> jsonBuffer;  
+      JsonObject& JsonRoot = jsonBuffer.createObject();
+      JsonRoot["id"] = lastId;
+      String output;
+      JsonRoot.printTo(output);
+      server.send(200, "text/plain", output);
+  });
+  server.on("/fingerSatus", HTTP_GET, [](){
+      StaticJsonBuffer<50> jsonBuffer;  
+      JsonObject& JsonRoot = jsonBuffer.createObject();
+      JsonRoot["fingerSatus"] = fingerSatus;
+      String output;
+      JsonRoot.printTo(output);
+      server.send(200, "text/plain", output);
+  });
   server.on("/run", HTTP_GET, [](){
       runFlag(1);
       StaticJsonBuffer<50> jsonBuffer;  

@@ -4,8 +4,7 @@
 SoftwareSerial mySerial(4, 5);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-void initFingerprint()
-{
+void initFingerprint(){
   Serial.begin(115200);
   Serial.println("fingertest");
 
@@ -83,6 +82,7 @@ uint8_t getFingerprintID() {
   // found a match!
   Serial.print("Found ID #"); 
   Serial.print(finger.fingerID);
+  lastId = finger.fingerID;
   Serial.print(" with confidence of "); 
   Serial.println(finger.confidence);
   return p;
