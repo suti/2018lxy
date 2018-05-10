@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-const char* ssid = "suti";//"Andy-Router";
-const char* password ="19961228";//"Andy1234";
+const char* ssid = "Chuangkit";//"Andy-Router";
+const char* password ="4008718211";//"Andy1234";
 const char* host = "esp8266fs";
 
 IPAddress local_IP(192,168,4,1);
