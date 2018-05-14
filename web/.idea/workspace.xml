@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="542838c9-d447-4ef3-9000-4c7be5bbd559" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../server-node/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../server-node/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../time/time.ino" afterPath="$PROJECT_DIR$/../time/time.ino" />
-      <change beforePath="$PROJECT_DIR$/../time/wifi.ino" afterPath="$PROJECT_DIR$/../time/wifi.ino" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="operator.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/operator/operator.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="144" column="61" lean-forward="false" selection-start-line="144" selection-start-column="61" selection-end-line="144" selection-end-column="61" />
+            <state relative-caret-position="32">
+              <caret line="135" column="8" lean-forward="false" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -428,12 +426,12 @@
       <workItem from="1524709699594" duration="5204000" />
       <workItem from="1525227744278" duration="26582000" />
       <workItem from="1525398688523" duration="9758000" />
-      <workItem from="1525663696291" duration="2258000" />
+      <workItem from="1525663696291" duration="2743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180465000" />
+    <option name="totallyTimeSpent" value="180950000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -446,6 +444,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -820,8 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/operator/operator.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="144" column="61" lean-forward="false" selection-start-line="144" selection-start-column="61" selection-end-line="144" selection-end-column="61" />
+        <state relative-caret-position="32">
+          <caret line="135" column="8" lean-forward="false" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="8" />
           <folding />
         </state>
       </provider>
