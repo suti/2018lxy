@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "system_error": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "array": "cpp",
+        "iterator": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp"
     }
 }

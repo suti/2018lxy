@@ -4,7 +4,7 @@ File fsUploadFile;
 ESP8266WebServer server(80);
 
 void HttpServerStart(){
-    server.handleClient();
+    return server.handleClient();
 }
 String getContentType(String filename){
   if(server.hasArg("download")) return "application/octet-stream";
@@ -83,7 +83,7 @@ void dataSave(){
   file.print(server.arg("data"));
   file.close();
   Serial.print("dataSave:\n");
-  Serial.println(server.arg("dataSave"));
+  Serial.println(server.arg("data"));
   server.send(200,"text/plain","{'status':'success'}");
 }
 
