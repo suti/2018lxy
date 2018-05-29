@@ -21,10 +21,14 @@ const dev = {
     inline: true,
     open: false,
     proxy: {
-      '/api/*': {
-        target: 'http://localhost:2333',
+      '/api*': {
+        target: 'http://192.168.1.135:80/',
         secure: false,
-      }
+      },
+      '/db/*': {
+        target: 'http://192.168.1.135:80/',
+        secure: false,
+      },
     },
   },
   performance: {

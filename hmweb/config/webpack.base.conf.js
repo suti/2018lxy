@@ -44,7 +44,7 @@ const conf = {
         },
       },
       {
-        test: /\.(ttf)$/,
+        test: /\.(ttf|woff|svg)$/,
         use: {
           loader: 'file-loader',
           options: {
