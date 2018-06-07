@@ -21,38 +21,16 @@ String dataStr;
 //   return flag;
 // }
 
-// JsonObject& readFile2Json (void) {
-//   String str = "{\"test\":\"test\"}";
-//   File file = SPIFFS.open("/db/user.json","r");
-//   str = file.readString();
-//   file.close();
-//   DynamicJsonBuffer jsonBuffer;
-//   JsonObject& root = jsonBuffer.parseObject(str);
-//   return root;
-// }
-
-// void setDataInfo(JsonObject& root){
-//   StaticJsonBuffer<256> jsonBuffer1;
-//   JsonObject& newJson = jsonBuffer1.createObject();
-//   StaticJsonBuffer<256> jsonBuffer;
-//   JsonObject& json = jsonBuffer.parseObject(dataStr);
-//   for (auto j : root) {
-//     JsonObject& nestJson = newJson.createNestedObject(String(j.key));
-//     nestJson["name"] = root[String(j.key)]["name"];
-//     nestJson["other"] = root[String(j.key)]["other"];
-//     if(json.containsKey(String(j.key))){
-//       nestJson["isOnline"] = json[String(j.key)]["isOnline"];
-//     } else {
-//       nestJson["isOnline"] = false;
-//     }
-//   }
-//   jsonBuffer.clear();
-//   jsonBuffer1.clear();
-//   newJson.printTo(dataStr);
-//   Serial.println(dataStr);
-// }
-
-void setup(void){
+void setup(void)
+{
+  pinMode(0, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(D5, OUTPUT);
+  pinMode(D6, OUTPUT);
+  digitalWrite(0, HIGH);
+  digitalWrite(2, HIGH);
+  digitalWrite(D5, HIGH);
+  digitalWrite(D6, HIGH);
   Serial.begin(115200);
   Serial.println("start!!");
   Serial.setDebugOutput(true);
@@ -62,6 +40,7 @@ void setup(void){
   HttpServerRouter();
 }
 
-void loop(void){
+void loop(void)
+{
   HttpServerStart();
 }

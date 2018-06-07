@@ -8,7 +8,7 @@ const path = require('path')
 const resolve = dir => path.join(__dirname, '..', dir)
 
 const dev = {
-  // mode: 'development',
+  mode: 'development',
   output: {
     path: resolve('dist'),
     publicPath: '/dist/',
@@ -39,11 +39,11 @@ const dev = {
       allChunks: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
-    // new HtmlWebpackPlugin({
-    //   filename: 'index.html',
-    //   template: 'index.html',
-    //   inject: true,
-    // }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true,
+    }),
   ],
   devtool: '#eval-source-map',
 }

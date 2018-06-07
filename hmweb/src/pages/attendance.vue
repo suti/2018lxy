@@ -129,9 +129,7 @@
                 this.$message('扫描成功，请拿开手指')
                 let {data} = await this.axios.get('/apiLastId')
                 this.userId = data.id + ''
-                console.log(this.userData, this.userId)
                 if (this.userData[this.userId]) {
-                  console.log(this.userData[this.userId])
                   if (this.userData[this.userId].isOnline) {
                     this.$message(`${this.userData[this.userId].name}同学离开实验室`)
                     this.userData[this.userId].isOnline = false

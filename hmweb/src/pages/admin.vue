@@ -12,7 +12,7 @@
       <!--</el-header>-->
       <el-main>
         <el-tabs v-model="tabIndex" @tab-click="handleClick">
-          <el-tab-pane v-for="(elem,index) in tabData" :label="elem.label" :name="elem.target">
+          <el-tab-pane v-for="(elem,index) in tabData" :label="elem.label" :name="elem.target" :key="index">
             <!--{{elem.label}}-->
             <attendance v-if="index === 0" :sourceData="userData"></attendance>
             <history v-if="index === 1" :history="historyData"></history>
@@ -29,6 +29,7 @@
   import history from './admin/history'
   import manager from './admin/manager'
   import setup from './admin/setup'
+  import axios from 'axios'
 
   const codeList = [
     'OK',
@@ -164,9 +165,21 @@
         this.userData = JSON.parse(userData)
       },
     },
+    watch:{
+      userData(){
+        Object.keys(this.userData).forEach(key => {
+          let user = this.userData[key]
+          axios.post('/apiBlink', {id: user.number, value: ~~user.isOnline})
+        })
+      }
+    },
     mounted () {
       this.getStorage()
       window.addEventListener('storage', this.getStorage)
+      Object.keys(this.userData).forEach(key => {
+        let user = this.userData[key]
+        axios.post('/apiBlink', {id: user.number, value: ~~user.isOnline})
+      })
     },
   }
 </script>

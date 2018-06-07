@@ -16,7 +16,7 @@
       </el-table-column>
       <el-table-column
         prop="number"
-        label="试验台编号">
+        label="实验台编号">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -44,7 +44,7 @@
           clearable>
         </el-input>
         <el-input
-          placeholder="试验台编号"
+          placeholder="实验台编号"
           v-model="number"
           type="number"
           clearable>

@@ -18,6 +18,7 @@ void HttpServerRouter()
             server.send(404, "text/plain", "FileNotFound");
     });
     server.on("/save", HTTP_POST, jsonDatabaseUpload);
+    server.on("/apiBlink", HTTP_POST, blink);
 
     server.on("/apiSaveData", HTTP_POST, dataSave);
     server.on("/apiLastId", HTTP_GET, []() {
