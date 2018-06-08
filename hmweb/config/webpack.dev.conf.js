@@ -22,11 +22,11 @@ const dev = {
     open: false,
     proxy: {
       '/api*': {
-        target: 'http://192.168.1.135:80/',
+        target: 'http://192.168.43.125:80/',
         secure: false,
       },
       '/db/*': {
-        target: 'http://192.168.1.135:80/',
+        target: 'http://192.168.43.125:80/',
         secure: false,
       },
     },

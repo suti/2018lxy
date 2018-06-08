@@ -16,7 +16,7 @@
             <!--{{elem.label}}-->
             <attendance v-if="index === 0" :sourceData="userData"></attendance>
             <history v-if="index === 1" :history="historyData"></history>
-            <manager v-if="index === 2" :data="historyData" :sourceData="userData" :maxId="maxId"></manager>
+            <manager v-if="index === 2" :data="historyData" :sourceData="userData" :maxId="maxId" @update='getStorage'></manager>
             <setup v-if="index === 3"></setup>
           </el-tab-pane>
         </el-tabs>
@@ -116,6 +116,7 @@
     computed: {
       historyData () {
         let arr = []
+        let timeSet = JSON.parse(window.localStorage.getItem('timeSet'))
         Object.keys(this.userData).forEach(id => {
           let startTime = '无记录'
           let endTime = '无记录'
@@ -124,7 +125,22 @@
             if (this.userData[id].endTime)
               endTime = (new Date(this.userData[id].endTime)).toString().split(' GMT')[0]
           }
-          arr.push({id, ...this.userData[id], startTime, endTime})
+          let start = new Date(this.userData[id].startTime)
+          let end = new Date(this.userData[id].endTime)
+          let status = '正常'
+          if(
+            start.getHours()>timeSet.start[0] ||
+            start.getHours()==timeSet.start[0] && start.getMinutes()>timeSet.start[1]
+          ){
+            status = '迟到'
+          }else if(
+            end != '无记录'&&
+            end.getHours()<timeSet.end[0]||
+            end.getHours()==timeSet.end[0]&&end.getMinutes()<timeSet.end[1]
+          ){
+            status = '早退'
+          }
+          arr.push({id, ...this.userData[id], startTime, endTime, status})
         })
         return arr
       },

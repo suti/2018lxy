@@ -180,6 +180,7 @@
             number: this.number,
           }
           window.localStorage.setItem('userData', JSON.stringify(this.sourceData))
+          this.$emit('update')
           this.dialogVisible = false
           this.edit = false
           return
@@ -204,6 +205,7 @@
               number: this.number,
             }
             window.localStorage.setItem('userData', JSON.stringify(this.sourceData))
+            this.$emit('update')
             this.dialogVisible = false
           } else {
             this.$message('添加失败,', codeList[data.status])
@@ -254,6 +256,7 @@
           this.$message('删除成功')
           delete this.sourceData[id]
           window.localStorage.setItem('userData', JSON.stringify(this.sourceData))
+          this.$emit('update')
         } else {
           this.$message('删除失败,', codeList[data.status])
         }

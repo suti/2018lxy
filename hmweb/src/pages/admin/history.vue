@@ -21,6 +21,10 @@
       prop="endTime"
       label="离开时间">
     </el-table-column>
+    <el-table-column
+      prop="status"
+      label="状态">
+    </el-table-column>
   </el-table>
 </template>
 <script>
